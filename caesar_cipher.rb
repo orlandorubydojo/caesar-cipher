@@ -5,7 +5,7 @@ class CaesarCipher
 
   def initialize(string, shift)
     # THIS IS WRONG! THIS SHOULD BE ENCRYPTED!
-    @encrypted_string = string.downcase
+    @encrypted_string = encrypt(string.downcase, shift)
   end
 
   # def decrypt(shift)
@@ -13,7 +13,17 @@ class CaesarCipher
 
 private
 
-  # def encrypt(string, shift)
-  # end
+  def encrypt(string, shift)
+    string.chars.map do |a|
+      i = (a.ord + shift)
+
+      if i >= 123
+        i = ((i - 97) % 26) + 97
+      end
+
+     i.chr
+    end.join
+
+  end
 
 end
